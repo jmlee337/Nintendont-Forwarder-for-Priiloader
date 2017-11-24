@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<app version="1">
+  <name>Nintendont Forwarder</name>
+  <coder>Badablek, jmlee337</coder>
+  <version>0.01</version>
+  <release_date>20170111000000</release_date>
+  <short_description>Nintendont Loader</short_description>
+  <long_description>Forwards to nintendont.</long_description>
+  <no_ios_reload/>
+  <ahb_access/>
+</app>
