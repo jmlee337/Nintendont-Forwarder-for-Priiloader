@@ -1,6 +1,8 @@
 # Nintendont Forwarder for Priiloader
 Go directly from power-on to Nintendont by autobooting Nintendont through this forwarder.
 
+Download from the [releases page](https://github.com/jmlee337/Nintendont-Forwarder-for-Priiloader/releases).
+
 You can't autoboot Nintendont from Priiloader out of the box, unfortunately.
 I'm not quite sure why this is, but it is.
 So slap this forwarder in your `apps/` folder and set Priiloader to autoboot it instead.
