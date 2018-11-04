@@ -1,24 +1,11 @@
 # Nintendont Forwarder for Priiloader
-Go directly from power-on to Nintendont by autobooting Nintendont through this forwarder.
+THIS IS OBSOLETE, YOU CAN AUTOBOOT NINTENDONT BY USING THE CORRECT SETTINGS IN PRIILOADER:
 
-Download from the [releases page](https://github.com/jmlee337/Nintendont-Forwarder-for-Priiloader/releases).
-
-You can't autoboot Nintendont from Priiloader out of the box, unfortunately.
-I'm not quite sure why this is, but it is.
-So slap this forwarder in your `apps/` folder and set Priiloader to autoboot it instead.
-It forwards to `apps/Nintendont/boot.dol`, which should be where you installed Nintendont.
-
-If you do it right your SD card should have this folder structure:
 ```
-SD
-  apps
-    forwarder
-      boot.dol
-      meta.xml
-    Nintendont
-      boot.dol
-      icon.png
-      meta.xml
+Use System Menu IOS:      off
+IOS to use for SM:        58
 ```
 
-I extracted this `.dol` out of Badablek's forwarder WAD, listed on the [GBAtemp Nintendont page](https://gbatemp.net/threads/nintendont.349258/).
+![priiloader settings, as above](https://i.imgur.com/OKrlCio.jpg)
+
+If for some reason you still want this, download from the [releases page](https://github.com/jmlee337/Nintendont-Forwarder-for-Priiloader/releases).
