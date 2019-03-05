@@ -7,8 +7,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <fat.h>
-#include <ntfs.h>
-#include <ext2.h>
 #include <sdcard/wiisd_io.h>
 #include <unistd.h>
 #include <time.h>
@@ -52,8 +50,8 @@ int USBDevice_Init()
 		usleep(200000); // 1/5 sec
 	}
 
-    if(!__io_usbstorage.startup() || !__io_usbstorage.isInserted())
-        return -1;
+  if(!__io_usbstorage.startup() || !__io_usbstorage.isInserted())
+    return -1;
 
 	int i;
 	MASTER_BOOT_RECORD *mbr = (MASTER_BOOT_RECORD *) malloc(MAX_SECTOR_SIZE);
@@ -65,22 +63,24 @@ int USBDevice_Init()
 
 	for(i = 0; i < 4; ++i)
 	{
-	if(mbr->partitions[i].type == 0)
-	continue;
+		if(mbr->partitions[i].type == 0)
+		continue;
 
-	__io_usbstorage.readSectors(le32(mbr->partitions[i].lba_start), 1, BootSector);
+		__io_usbstorage.readSectors(le32(mbr->partitions[i].lba_start), 1, BootSector);
 
-	if(*((u16 *) (BootSector + 0x1FE)) == 0x55AA)
-	{
-		//! Partition typ can be missleading the correct partition format. Stupid lazy ass Partition Editors.
-		if(memcmp(BootSector + 0x36, "FAT", 3) == 0 || memcmp(BootSector + 0x52, "FAT", 3) == 0)
-			fatMount(DeviceName[USB1+i], &__io_usbstorage, le32(mbr->partitions[i].lba_start), CACHE, SECTORS);
-		else if (memcmp(BootSector + 0x03, "NTFS", 4) == 0)
-			ntfsMount(DeviceName[USB1+i], &__io_usbstorage, le32(mbr->partitions[i].lba_start), CACHE, SECTORS, NTFS_SHOW_HIDDEN_FILES | NTFS_RECOVER | NTFS_IGNORE_CASE);
-	}
-		else if(mbr->partitions[i].type == PARTITION_TYPE_LINUX)
-			ext2Mount(DeviceName[USB1+i], &__io_usbstorage, le32(mbr->partitions[i].lba_start), CACHE, SECTORS, EXT2_FLAG_DEFAULT);
-    }
+		if(*((u16 *) (BootSector + 0x1FE)) == 0x55AA)
+		{
+			// Partition type can be missleading the correct partition format.
+			// Stupid lazy ass Partition Editors.
+			if(memcmp(BootSector + 0x36, "FAT", 3) == 0 || memcmp(BootSector + 0x52, "FAT", 3) == 0)
+				fatMount(
+						DeviceName[USB1+i],
+						&__io_usbstorage,
+						le32(mbr->partitions[i].lba_start),
+						CACHE,
+						SECTORS);
+		}
+  }
 	free(mbr);
 	free(BootSector);
 
@@ -96,8 +96,6 @@ void USBDevice_deInit()
 	{
 		sprintf(Name, "%s:/", DeviceName[dev]);
 		fatUnmount(Name);
-		ntfsUnmount(Name, true);
-		ext2Unmount(Name);
 	}
 	//Let's not shutdown so it stays awake for the application
 	__io_usbstorage.shutdown();
