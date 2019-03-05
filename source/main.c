@@ -38,6 +38,14 @@
 #define BOOTER_ADDR		((u8 *) 0x93000000)
 #define ARGS_ADDR		((u8 *) 0x93200000)
 
+/**
+ * Alternative BOOT_PATHS:
+ *
+ * #define BOOT_PATH "Nintendont"
+ * #define BOOT_PATH "NintnedontForMelee"
+ */
+#define BOOT_PATH "Nintendont Slippi"
+
 typedef void (*entrypoint) (void);
 extern void __exception_setreload(int t);
 extern void __exception_closeall();
@@ -46,22 +54,12 @@ extern const u32 app_booter_bin_size;
 
 static FILE *open_file(const char *dev, char *filepath)
 {
-	sprintf(filepath, "%s:/apps/usbloader/boot.dol", dev);
+	sprintf(filepath, "%s:/apps/%s/boot.dol", dev, BOOT_PATH);
 	FILE *exeFile = fopen(filepath ,"rb");
 
 	if (exeFile == NULL)
 	{
-		sprintf(filepath, "%s:/apps/usbloader_cfg/boot.dol", dev);
-		exeFile = fopen(filepath ,"rb");
-	}
-	if (exeFile == NULL)
-	{
-		sprintf(filepath, "%s:/apps/usbloader/boot.elf", dev);
-		exeFile = fopen(filepath ,"rb");
-	}
-	if (exeFile == NULL)
-	{
-		sprintf(filepath, "%s:/apps/usbloader_cfg/boot.elf", dev);
+		sprintf(filepath, "%s:/apps/%s/boot.elf", dev, BOOT_PATH);
 		exeFile = fopen(filepath ,"rb");
 	}
 
