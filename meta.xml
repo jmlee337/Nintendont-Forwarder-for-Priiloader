@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<app version="1">
+  <name>Nintendont Forwarder</name>
+  <coder>The Lemon Man, Dimok, FIX94, oggzee, jmlee337</coder>
+  <version>0.1</version>
+  <release_date>20190305000000</release_date>
+  <short_description>Nintendont Forwarder</short_description>
+  <long_description>
+    Launches /apps/Nintendont/boot.dol
+
+    Copyright 2009 The Lemon Man and thanks to luccax, Wiipower, Aurelio and crediar
+    Copyright 2010 Dimok
+    Copyright 2011 FIX94, oggzee
+    Slightly edited and uploaded to Github 2019 jmlee337
+  </long_description>
+  <no_ios_reload/>
+  <ahb_access/>
+</app>

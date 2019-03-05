@@ -41,10 +41,10 @@
 /**
  * Alternative BOOT_PATHS:
  *
- * #define BOOT_PATH "Nintendont"
  * #define BOOT_PATH "NintnedontForMelee"
+ * #define BOOT_PATH "Nintendont Slippi"
  */
-#define BOOT_PATH "Nintendont Slippi"
+#define BOOT_PATH "Nintendont"
 
 typedef void (*entrypoint) (void);
 extern void __exception_setreload(int t);
